@@ -12,7 +12,7 @@ chmod +x linux_unix_FineBI4_0_2-CN.sh
 sh /source/linux_unix_FineBI4_0_2-CN.sh
 ```
 
-## setup FineBI
+### setup FineBI
 
 ```shell
 cd /usr/local/FineBI
@@ -23,6 +23,18 @@ cd /usr/local/FineBI
 cd /usr/local/FineBI && nohup ./FineBI  &
 
 open localhost:37799/WebReport/ReportServer?op=fs
+```
+
+### hacking
+
+```shell
+cp FineBI-4.0 ./source
+
+docker exec -it finebi bash
+cd /source
+# 确认安装位置 `/usr/local/FineBI/`
+# 修改 `hack.rb` 相应路径
+ruby FineBI-4.0/hack/hack.rb
 ```
 
 mysql
