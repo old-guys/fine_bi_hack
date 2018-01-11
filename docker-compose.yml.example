@@ -1,0 +1,27 @@
+version: '3'
+services:
+  finebi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finebi
+    environment:
+      - cluster.name=finebi-cluster
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./conf/entrypoint.sh:/entrypoint.sh
+      - finebi:/usr/local/FineBI
+      - ./source:/source
+    ports:
+      - 37799:37799
+    entrypoint: 'sh /entrypoint.sh'
+    networks:
+      - finebi
+networks:
+  finebi:
+volumes:
+  finebi:
+    driver: local
